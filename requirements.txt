@@ -1,0 +1,10 @@
+requests
+openai
+pillow
+tqdm
+numpy~=1.26.4
+matplotlib
+scikit-learn
+datasets
+transformers
+vllm~=0.8.2
