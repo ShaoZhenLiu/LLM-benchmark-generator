@@ -1,10 +1,8 @@
-import json
 import argparse
 import numpy as np
 from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
-from tqdm import tqdm
 from datasets import load_dataset
 
 def KMeans_clustering(embeddings, n_clusters=10):
@@ -117,7 +115,6 @@ if __name__ == "__main__":
         plt.scatter(embeddings_2d[idx, 0], embeddings_2d[idx, 1], label=f"Cluster {i}, {sum(idx)} samples", alpha=0.6)
 
         # 在每个类别中，随机采样10个样本
-        # print(np.where(idx))
         sample_indices = np.random.choice(np.where(idx)[0], size=min(args.sample_per_cluster, sum(idx)), replace=False)
         # 对应回labels
         sample_labels = [labels[int(j)] for j in sample_indices]

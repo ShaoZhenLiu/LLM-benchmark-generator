@@ -62,6 +62,4 @@ if __name__ == '__main__':
         desc="get_embedding",
     )
     print(dataset)
-    # print(len(dataset["embedding"][0]))
-    # save to "./data/mscoco_emb.parquet"
     dataset.to_parquet(args.output_path)

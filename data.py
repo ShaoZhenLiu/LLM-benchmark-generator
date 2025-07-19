@@ -198,10 +198,6 @@ def get_args():
                         help='每次处理的样本批量')
     parser.add_argument('--output_path', type=str, default='./data/tmp.jsonl',
                         help='结果输出路径')
-    # parser.add_argument('--model_url', type=str, default='http://0.0.0.0:18901/v1',
-    #                     help='请求模型的URL')
-    # parser.add_argument('--api_key', type=str, default='EMPTY',
-    #                     help='API密钥 (默认: EMPTY)')
 
     args = parser.parse_args()
     return args
@@ -219,17 +215,8 @@ if __name__ == "__main__":
     if len(dataset) > 0:
         sample = dataset[0]
 
-        # # 图像转base64
-        # buffered = BytesIO()
-        # sample["image"].save(buffered, format="JPEG")
-        # img_base64 = base64.b64encode(buffered.getvalue()).decode()
-
         print("\n合并描述:")
         print(sample["description"])
 
         print("\nBase64图像(前100字符):")
         print(sample["image"][:100] + "...")
-
-        # 可选：保存完整Base64到文件
-        # with open("sample_image.txt", "w") as f:
-        #     f.write(img_base64)

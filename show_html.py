@@ -112,18 +112,6 @@ def generate_html(dataset1, attr_name1, dataset2, attr_name2,
 
 # 示例用法
 if __name__ == "__main__":
-    # 示例数据结构（实际使用时替换为您的真实数据）
-    example_data = [
-        {'image_path': f'image_{i}.jpg', 'caption': f'Caption for image {i}'}
-        for i in range(10)
-    ]
-
-    # 生成四个略有不同的数据集
-    data1 = [{**item, 'description': f'Desc-A {i}'} for i, item in enumerate(example_data)]
-    data2 = [{**item, 'label': f'Label-B {i}'} for i, item in enumerate(example_data)]
-    data3 = [{**item, 'notes': f'Note-C {i}'} for i, item in enumerate(example_data)]
-    data4 = [{**item, 'details': [f'Detail {i}-1', f'Detail {i}-2']} for i, item in enumerate(example_data)]
-
     data1 = load_dataset("json", data_files="./data/t2i_long_text.jsonl", split="train")  # caption
     data2 = load_dataset("json", data_files="./data/t2i_complex_semantic.jsonl", split="train")  # instructions
     data3 = load_dataset("json", data_files="./data/edit_long_text.jsonl", split="train")  # edit_instructions

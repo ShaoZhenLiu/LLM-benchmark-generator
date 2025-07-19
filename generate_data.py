@@ -60,22 +60,17 @@ def get_resp(examples, task_type, num_workers=8):
 
     pool.close()
     pool.join()
-    
-    # print(completion.choices[0].message.content)
-    # print(completion.usage.completion_tokens)
+
     response_ls = [completion.choices[0].message.content for completion in completion_ls]
     token_length_ls = [completion.usage.completion_tokens for completion in completion_ls]
-    # print(response_ls)
-    # print(token_length_ls)
     extract_type = "answer_only" if task_type in ["t2i_complex_semantic", "edit_complex_semantic"] else "classic"
-    task_type_ls, instruction_ls = map(list, zip(*[parse_resp(response) for response in response_ls]))  # 看看这里对不对
+    task_type_ls, instruction_ls = map(list, zip(*[parse_resp(response, extract_type=extract_type) for response in response_ls]))  # 看看这里对不对
     return {
         "task_type": task_type_ls,
         "instructions": instruction_ls,
         "completion_tokens": token_length_ls,
         "full_response": response_ls,
     }
-    # print(completion.to_json())
 
 
 if __name__ == '__main__':
